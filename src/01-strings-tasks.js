@@ -318,11 +318,7 @@ function encodeToRot13(/* str */) {
  */
 function isString(value) {
   // throw new Error('Not implemented');
-  const ans = value;
-  if (typeof value === 'object' && value !== null) {
-    return true;
-  }
-  if (typeof ans === 'string') {
+  if (value instanceof String || typeof value === 'string') {
     return true;
   }
   return false;
@@ -353,8 +349,31 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  // throw new Error('Not implemented');
+  const arr = value.split('');
+  const type = arr[arr.length - 1];
+  const name = arr[0];
+  let m = 0;
+  let n = 0;
+  let ans = 0;
+  switch (type) {
+    case '♣': { m = 0; break; }
+    case '♦': { m = 13; break; }
+    case '♥': { m = 26; break; }
+    case '♠': { m = 39; break; }
+    default: break;
+  }
+  switch (name) {
+    case 'A': { n = 1; break; }
+    case '1': { n = 10; break; }
+    case 'J': { n = 11; break; }
+    case 'Q': { n = 12; break; }
+    case 'K': { n = 13; break; }
+    default: n = name.valueOf();
+  }
+  ans = (parseInt(n, 10) + m) - 1;
+  return ans;
 }
 
 
