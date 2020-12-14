@@ -92,7 +92,7 @@ function getPolynom() {
 function memoize(func) {
   // throw new Error('Not implemented');
   const mem = {};
-  const constructor = function (...args) {
+  const constructor = function f(...args) {
     const key = JSON.stringify(args);
     if (key in mem) {
       return mem[key];
@@ -166,8 +166,9 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
+function partialUsingArguments(/* fn, args1 */) {
   throw new Error('Not implemented');
+  // return fn(args1);
 }
 
 
